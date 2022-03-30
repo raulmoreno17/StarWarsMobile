@@ -4,7 +4,7 @@ import Progress from '../Atoms/Progress';
 interface charactersData {
   characters: [];
   isLoading: Boolean;
-  pagination: { count: number; currentPage: number };
+  pagination: { count: number, currentPage: number };
   onPageChanged: Function;
   //onClick: (e: React.MouseEvent) => void,
 }

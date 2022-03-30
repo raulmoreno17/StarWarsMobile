@@ -36,11 +36,17 @@ const useSWAPI = () => {
     pagination = data.pagination;
   }
 
-  const newRequest = ()=>{
-      console.log("new Request function triggered!")
+  const newRequest = (event: number) => {
+    setCurrentPage(event);
+    if (data.pagination.currentPage < event) {
+      setRequestLink(pagination.next);
+    } else if (data.pagination.currentPage > event) {
+      setRequestLink(pagination.previous);
+    }
+    console.log('new Request function triggered!');
   };
 
-  return { characters, pagination, isLoading, newRequest};
+  return { characters, pagination, isLoading, newRequest };
 };
 
 export default useSWAPI;
