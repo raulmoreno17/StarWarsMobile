@@ -36,7 +36,11 @@ const useSWAPI = () => {
     pagination = data.pagination;
   }
 
-  return { characters, pagination, isLoading};
+  const newRequest = ()=>{
+      console.log("new Request function triggered!")
+  };
+
+  return { characters, pagination, isLoading, newRequest};
 };
 
 export default useSWAPI;
