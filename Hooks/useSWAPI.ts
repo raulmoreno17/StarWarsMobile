@@ -24,13 +24,12 @@ const useSWAPI = () => {
   };
   const { data, isLoading } = useQuery(['characters', requestLink], getCharacters);
 
-  // Defines default values for empty table
+  // Defines values depending if there exists data for the table
   let characters = [];
   let pagination = {
     count: 0,
     currentPage: 0,
   };
-
   if (data) {
     characters = data.characters;
     pagination = data.pagination;
@@ -43,10 +42,12 @@ const useSWAPI = () => {
     } else if (data.pagination.currentPage > event) {
       setRequestLink(pagination.previous);
     }
-    console.log('new Request function triggered!');
   };
 
-  return { characters, pagination, isLoading, newRequest };
+  const searchCharacter = (input: string) =>
+    setRequestLink(`https://swapi.dev/api/people/?search=${input}`);
+
+  return { characters, pagination, isLoading, newRequest, searchCharacter };
 };
 
 export default useSWAPI;
