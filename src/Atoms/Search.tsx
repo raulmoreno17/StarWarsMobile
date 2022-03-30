@@ -8,7 +8,7 @@ const Search = (props) => {
       props.onChange(query)
     };
 
-  return <Searchbar placeholder="Search" onChangeText={onChangeSearch} value={searchQuery} />;
+  return <Searchbar placeholder="Who are you looking for?" onChangeText={onChangeSearch} value={searchQuery} />;
 };
 
 export default Search;
