@@ -2,13 +2,13 @@ import { Pressable, StyleSheet } from 'react-native';
 import { DataTable } from 'react-native-paper';
 import Progress from '../Atoms/Progress';
 import { useNavigation } from '@react-navigation/native';
+import React, { Key } from 'react';
 
 interface charactersData {
   characters: [];
   isLoading: Boolean;
   pagination: { count: number; currentPage: number };
-  onPageChanged: Function;
-  //onClick: (e: React.MouseEvent) => void,
+  onPageChanged: (page: number) => void;
 }
 
 const CharactersList = (props: charactersData) => {
@@ -28,7 +28,7 @@ const CharactersList = (props: charactersData) => {
 
       {isLoading && <Progress />}
 
-      {characters.map((character: { name: String; url: String }) => {
+      {characters.map((character: { name: String; url: Key }) => {
         return (
           <Pressable onPress={()=>pressHandler(character)} key={character.url}>
             <DataTable.Row>

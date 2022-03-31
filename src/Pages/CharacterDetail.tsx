@@ -1,6 +1,11 @@
-import { Text, View, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { List, Headline } from 'react-native-paper';
+import React from 'react';
+
+interface MyState {
+  value: string
+}
 
 const CharacterDetail = () => {
   const route = useRoute();

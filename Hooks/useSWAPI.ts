@@ -29,6 +29,8 @@ const useSWAPI = () => {
   let pagination = {
     count: 0,
     currentPage: 0,
+    next: '',
+    previous: '',
   };
   if (data) {
     characters = data.characters;
@@ -37,9 +39,9 @@ const useSWAPI = () => {
 
   const newRequest = (event: number) => {
     setCurrentPage(event);
-    if (data.pagination.currentPage < event) {
+    if (data!.pagination.currentPage < event) {
       setRequestLink(pagination.next);
-    } else if (data.pagination.currentPage > event) {
+    } else if (data!.pagination.currentPage > event) {
       setRequestLink(pagination.previous);
     }
   };

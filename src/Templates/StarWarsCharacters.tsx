@@ -3,6 +3,7 @@ import useSWAPI from '../../Hooks/useSWAPI';
 import { Button } from 'react-native-paper';
 import CharactersList from '../Organisms/CharactersList';
 import Search from '../Atoms/Search';
+import React from 'react';
 
 const StarWarsCharacters = () => {
   const { characters, pagination, isLoading, newRequest, searchCharacter } = useSWAPI();
