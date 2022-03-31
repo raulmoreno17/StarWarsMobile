@@ -4,6 +4,7 @@ const Banner = () => {
   return (
     <View style={styles.container}>
       <Image
+        testID="banner-img"
         style={styles.logo}
         source={{
           uri: 'https://upload.wikimedia.org/wikipedia/commons/thumb/6/6c/Star_Wars_Logo.svg/1920px-Star_Wars_Logo.svg.png',
@@ -15,12 +16,13 @@ const Banner = () => {
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 10,
+    padding: 20,
   },
   logo: {
     width: 200,
     height: 100,
     borderRadius: 25,
+    alignSelf: "center",
   },
 });
 

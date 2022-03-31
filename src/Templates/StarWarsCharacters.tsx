@@ -6,10 +6,9 @@ import Search from '../Atoms/Search';
 
 const StarWarsCharacters = () => {
   const { characters, pagination, isLoading, newRequest, searchCharacter } = useSWAPI();
-  console.log(characters);
   return (
     <View>
-      <Search onChange={searchCharacter}/>
+      <Search onChange={searchCharacter} />
       <CharactersList
         characters={characters}
         pagination={pagination}

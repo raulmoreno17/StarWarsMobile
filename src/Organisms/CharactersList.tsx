@@ -1,4 +1,4 @@
-import { Pressable } from 'react-native';
+import { Pressable, StyleSheet } from 'react-native';
 import { DataTable } from 'react-native-paper';
 import Progress from '../Atoms/Progress';
 import { useNavigation } from '@react-navigation/native';
@@ -21,9 +21,9 @@ const CharactersList = (props: charactersData) => {
     navigation.navigate('CharacterDetail', character);
   };
   return (
-    <DataTable>
+    <DataTable >
       <DataTable.Header>
-        <DataTable.Title>Characters List</DataTable.Title>
+        <DataTable.Title style={styles.container}>Characters List</DataTable.Title>
       </DataTable.Header>
 
       {isLoading && <Progress />}
@@ -32,7 +32,7 @@ const CharactersList = (props: charactersData) => {
         return (
           <Pressable onPress={()=>pressHandler(character)} key={character.url}>
             <DataTable.Row>
-              <DataTable.Cell>{character.name}</DataTable.Cell>
+              <DataTable.Cell style={styles.container}>{character.name}</DataTable.Cell>
             </DataTable.Row>
           </Pressable>
         );
@@ -47,5 +47,11 @@ const CharactersList = (props: charactersData) => {
     </DataTable>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: "center"
+  }
+});
 
 export default CharactersList;
