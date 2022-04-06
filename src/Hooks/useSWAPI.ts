@@ -10,6 +10,7 @@ const useSWAPI = () => {
     const request = await fetch(requestLink)
       .then((response) => response.json())
       .then((data) => {
+        const numberOfPages = Math.round(data.count / 10);
         const result = {
           characters: data.results,
           pagination: {
@@ -17,6 +18,8 @@ const useSWAPI = () => {
             next: data.next,
             count: data.count,
             currentPage: currentPage,
+            numberOfPages: numberOfPages,
+            paginationLabel: `${currentPage + 1} of ${numberOfPages}`,
           },
         };
         return result;
@@ -32,6 +35,8 @@ const useSWAPI = () => {
     currentPage: 0,
     next: '',
     previous: '',
+    numberOfPages: 0,
+    paginationLabel: '',
   };
   if (data) {
     characters = data.characters;
@@ -47,10 +52,10 @@ const useSWAPI = () => {
     }
   };
 
-  const searchCharacter = (input: string) =>{
+  const searchCharacter = (input: string) => {
     setSearchQuery(input);
     setRequestLink(`https://swapi.dev/api/people/?search=${input}`);
-  }
+  };
 
   return { characters, pagination, isLoading, newRequest, searchCharacter, searchQuery };
 };

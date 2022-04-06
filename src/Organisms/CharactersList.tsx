@@ -3,11 +3,17 @@ import { DataTable } from 'react-native-paper';
 import Progress from '../Atoms/Progress';
 import { useNavigation } from '@react-navigation/native';
 import React, { Key } from 'react';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack/lib/typescript/src/types';
 
 interface charactersData {
   characters: [];
   isLoading: Boolean;
-  pagination: { count: number; currentPage: number };
+  pagination: {
+    count: number;
+    currentPage: number;
+    numberOfPages: number;
+    paginationLabel: string;
+  };
   onPageChanged: (page: number) => void;
 }
 
@@ -17,13 +23,8 @@ const CharactersList: React.FC<charactersData> = ({
   pagination,
   onPageChanged,
 }) => {
-  const numberOfPages = Math.round(pagination.count / 10);
-  const paginationLabel = `${pagination.currentPage + 1} of ${numberOfPages}`;
-  const navigation = useNavigation();
+  const navigation = useNavigation<NativeStackNavigationProp<any>>();
 
-  const pressHandler = (character: {}) => {
-    navigation.navigate('CharacterDetail', character);
-  };
   return (
     <DataTable>
       <DataTable.Header>
@@ -34,7 +35,10 @@ const CharactersList: React.FC<charactersData> = ({
 
       {characters.map((character: { name: String; url: Key }) => {
         return (
-          <Pressable onPress={() => pressHandler(character)} key={character.url}>
+          <Pressable
+            onPress={() => navigation.navigate('CharacterDetail', character)}
+            key={character.url}
+          >
             <DataTable.Row>
               <DataTable.Cell style={styles.container}>{character.name}</DataTable.Cell>
             </DataTable.Row>
@@ -44,9 +48,9 @@ const CharactersList: React.FC<charactersData> = ({
 
       <DataTable.Pagination
         page={pagination.currentPage}
-        numberOfPages={numberOfPages}
+        numberOfPages={pagination.numberOfPages}
         onPageChange={onPageChanged}
-        label={paginationLabel}
+        label={pagination.paginationLabel}
       />
     </DataTable>
   );
