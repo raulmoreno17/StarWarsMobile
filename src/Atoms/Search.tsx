@@ -1,24 +1,18 @@
 import React from 'react';
-import { useState } from 'react';
 import { Searchbar } from 'react-native-paper';
 interface Props {
   onChange: (arg0: string) => void;
+  searchValue: string;
+  placeholder: string;
 }
-const Search: React.FC<Props> = ({ onChange }) => {
-  const [searchQuery, setSearchQuery] = useState('');
-
-  const onChangeSearch = (query: string) => {
-    setSearchQuery(query);
-    onChange(query);
-  };
-
+const Search: React.FC<Props> = ({ onChange, searchValue, placeholder }) => {
   return (
     <Searchbar
-      autoComplete
-      placeholder="Who are you looking for?"
+      autoComplete="true"
+      placeholder={placeholder}
       testID="Search"
-      onChangeText={onChangeSearch}
-      value={searchQuery}
+      onChangeText={onChange}
+      value={searchValue}
     />
   );
 };

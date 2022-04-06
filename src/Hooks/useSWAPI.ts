@@ -4,6 +4,7 @@ import { useQuery } from 'react-query';
 const useSWAPI = () => {
   const [requestLink, setRequestLink] = useState('https://swapi.dev/api/people');
   const [currentPage, setCurrentPage] = useState(0);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const getCharacters = async () => {
     const request = await fetch(requestLink)
@@ -46,10 +47,12 @@ const useSWAPI = () => {
     }
   };
 
-  const searchCharacter = (input: string) =>
+  const searchCharacter = (input: string) =>{
+    setSearchQuery(input);
     setRequestLink(`https://swapi.dev/api/people/?search=${input}`);
+  }
 
-  return { characters, pagination, isLoading, newRequest, searchCharacter };
+  return { characters, pagination, isLoading, newRequest, searchCharacter, searchQuery };
 };
 
 export default useSWAPI;
