@@ -1,5 +1,5 @@
 import { Text, View } from 'react-native';
-import useSWAPI from '../../Hooks/useSWAPI';
+import useSWAPI from '../Hooks/useSWAPI';
 import { Button } from 'react-native-paper';
 import CharactersList from '../Organisms/CharactersList';
 import Search from '../Atoms/Search';
