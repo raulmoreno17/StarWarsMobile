@@ -3,10 +3,6 @@ import { useRoute } from '@react-navigation/native';
 import { List, Headline } from 'react-native-paper';
 import React from 'react';
 
-interface MyState {
-  value: string
-}
-
 const CharacterDetail = () => {
   const route = useRoute();
   const { name, birth_year, eye_color, gender, hair_color, height, mass, skin_color } =

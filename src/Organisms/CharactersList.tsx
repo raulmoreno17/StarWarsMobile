@@ -11,8 +11,12 @@ interface charactersData {
   onPageChanged: (page: number) => void;
 }
 
-const CharactersList = (props: charactersData) => {
-  const { characters, isLoading, pagination, onPageChanged } = props;
+const CharactersList: React.FC<charactersData> = ({
+  characters,
+  isLoading,
+  pagination,
+  onPageChanged,
+}) => {
   const numberOfPages = Math.round(pagination.count / 10);
   const paginationLabel = `${pagination.currentPage + 1} of ${numberOfPages}`;
   const navigation = useNavigation();
@@ -21,7 +25,7 @@ const CharactersList = (props: charactersData) => {
     navigation.navigate('CharacterDetail', character);
   };
   return (
-    <DataTable >
+    <DataTable>
       <DataTable.Header>
         <DataTable.Title style={styles.container}>Characters List</DataTable.Title>
       </DataTable.Header>
@@ -30,7 +34,7 @@ const CharactersList = (props: charactersData) => {
 
       {characters.map((character: { name: String; url: Key }) => {
         return (
-          <Pressable onPress={()=>pressHandler(character)} key={character.url}>
+          <Pressable onPress={() => pressHandler(character)} key={character.url}>
             <DataTable.Row>
               <DataTable.Cell style={styles.container}>{character.name}</DataTable.Cell>
             </DataTable.Row>
@@ -50,8 +54,8 @@ const CharactersList = (props: charactersData) => {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: "center"
-  }
+    justifyContent: 'center',
+  },
 });
 
 export default CharactersList;
