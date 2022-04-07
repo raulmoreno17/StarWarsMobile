@@ -2,9 +2,24 @@ import { View, StyleSheet } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { List, Headline } from 'react-native-paper';
 import React from 'react';
+import { RouteProp } from '@react-navigation/native';
 
 const CharacterDetail = () => {
-  const route = useRoute();
+  const route: RouteProp<
+    {
+      params: {
+        name: string;
+        birth_year: string;
+        eye_color: string;
+        gender: string;
+        hair_color: string;
+        height: string;
+        mass: string;
+        skin_color: string;
+      };
+    },
+    'params'
+  > = useRoute();
   const { name, birth_year, eye_color, gender, hair_color, height, mass, skin_color } =
     route.params;
 
@@ -44,8 +59,8 @@ const CharacterDetail = () => {
 
 const styles = StyleSheet.create({
   headline: {
-    padding: 20
-  }
+    padding: 20,
+  },
 });
 
 export default CharacterDetail;
