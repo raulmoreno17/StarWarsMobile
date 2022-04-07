@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
-import Banner from '../src/Atoms/Banner';
+import Banner from '../Atoms/Banner';
 
 
 describe('SW Mobile Tests', () => {
